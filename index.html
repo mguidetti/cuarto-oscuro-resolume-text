@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <div>
+    <h1>Config</h1>
+    <input type="text" name="address" id="address-input" value="localhost">
+    <input type="number" name="port" id="port-input" value="8080">
+    <div>
+    <label for="layer">layer</label>
+    <input type="number" name="layer" id="layer-input" min="1" max="99" step="1" value="1">
+    </div>
+  </div>
+
+
+  <form id="message-form">
+    <textarea name="message" id="message-input"></textarea>
+    <button type="submit">Submit</button>
+  </form>
+
+  <div id="response"></div>
+</body>
+
+</html>
