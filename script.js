@@ -1,69 +1,84 @@
-async function sendForm(event) {
-  event.preventDefault();
-
-  const address = document.getElementById("address-input").value;
-  const port = document.getElementById("port-input").value;
-  const baseApiUrl = `http://${address}:${port}/api/v1`;
-
-  const form = event.target;
-  const layer = document.getElementById("layer-input").value;
-  const message = document.getElementById("message-input").value;
-  const responseElement = document.getElementById("response");
-
-  // const body = {
-  //   name: {
-  //     value: message,
-  //   },
-  //   video: {
-  //     effects: [
-  //       {
-  //         name: "Blow",
-  //         params: {
-  //           Text: {
-  //             value: "Derrp!!",
-  //           },
-  //         },
-  //       },
-  //     ],
-  //   },
-  // };
-
-  // const response = await fetch(
-  //   `${baseApiUrl}/composition/layers/${layer}/clips/2`,
-  //   {
-  //     method: "PUT",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(body),
-  //   }
-  // );
-
-  const body = {
-    type: "TextBlock",
-    parameters: {
-      text: "Your Text Here",
-      fontSize: 48,
-      color: "#FFFFFF",
-    },
-  };
-
-  const response = await fetch(
-    `${baseApiUrl}/composition/layers/${layer}/clips/2/open`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: "source:///video/Text\ Block",
-    }
-  );
-
-  if (!response.ok) {
-    throw new Error("Network response was not ok");
+class Resolume {
+  constructor(address, port) {
+    this.baseUrl = `http://${address}:${port}/api/v1`;
+    this.clipIndex = 1
   }
 
-  console.log("Response", response);
+  handleResponse(response) {
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    } else {
+      console.log(response);
+      return response;
+    }
+  }
+
+  async createTextBlock(layerIndex, clipIndex) {
+    const response = await fetch(
+      `${this.baseUrl}/composition/layers/${layerIndex}/clips/${clipIndex}/open`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: "source:///video/Text%20Block",
+      }
+    );
+
+    this.handleResponse(response);
+  }
+
+  async updateTextBlock(layerIndex, clipIndex, message) {
+    const body = {
+      name: {
+        value: message,
+      },
+      video: {
+        sourceparams: {
+          Text: {
+            value: message,
+          },
+        },
+      },
+    };
+
+    const response = await fetch(
+      `${this.baseUrl}/composition/layers/${layerIndex}/clips/${clipIndex}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      }
+    );
+
+    this.handleResponse(response);
+  }
 }
 
-document.getElementById("message-form").addEventListener("submit", sendForm);
+async function submitForm(event, resolume) {
+  event.preventDefault();
+
+  const layerInput = document.getElementById("layer-input");
+  const messageInput = document.getElementById("message-input");
+  const layerIndex = layerInput.value;
+  const message = messageInput.value;
+
+  await resolume.createTextBlock(layerIndex, resolume.clipIndex);
+  await resolume.updateTextBlock(layerIndex, resolume.clipIndex, message);
+
+  resolume.clipIndex++
+}
+
+function setup() {
+  const address = document.getElementById("address-input").value;
+  const port = document.getElementById("port-input").value;
+  const resolume = new Resolume(address, port);
+
+  document
+    .getElementById("message-form")
+    .addEventListener("submit", (event) => submitForm(event, resolume));
+}
+
+setup();
