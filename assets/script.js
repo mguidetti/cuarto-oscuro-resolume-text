@@ -1,7 +1,6 @@
 class Resolume {
   constructor(address, port) {
     this.baseUrl = `http://${address}:${port}/api/v1`;
-    this.clipIndex = 1
   }
 
   handleResponse(response) {
@@ -61,14 +60,14 @@ async function submitForm(event, resolume) {
   event.preventDefault();
 
   const layerInput = document.getElementById("layer-input");
+  const clipInput = document.getElementById("clip-input");
   const messageInput = document.getElementById("message-input");
-  const layerIndex = layerInput.value;
   const message = messageInput.value;
 
-  await resolume.createTextBlock(layerIndex, resolume.clipIndex);
-  await resolume.updateTextBlock(layerIndex, resolume.clipIndex, message);
+  await resolume.createTextBlock(layerInput.value, clipInput.value);
+  await resolume.updateTextBlock(layerInput.value, clipInput.value, message);
 
-  resolume.clipIndex++
+  clipInput.value++ 
 }
 
 function setup() {
