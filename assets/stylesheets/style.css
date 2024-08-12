@@ -10,7 +10,7 @@ body {
 }
 
 h1 {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
 }
 
 #config {
@@ -34,6 +34,10 @@ h1 {
 
 #config > div > input[type="number"] {
   max-width: 10ch;
+}
+
+#config > div > input[name="address"] {
+  max-width: 20ch;
 }
 
 textarea#message-input { 

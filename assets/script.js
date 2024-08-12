@@ -62,10 +62,9 @@ async function submitForm(event, resolume) {
   const layerInput = document.getElementById("layer-input");
   const clipInput = document.getElementById("clip-input");
   const messageInput = document.getElementById("message-input");
-  const message = messageInput.value;
 
   await resolume.createTextBlock(layerInput.value, clipInput.value);
-  await resolume.updateTextBlock(layerInput.value, clipInput.value, message);
+  await resolume.updateTextBlock(layerInput.value, clipInput.value, message.value);
 
   clipInput.value++ 
   messageInput.value = null
