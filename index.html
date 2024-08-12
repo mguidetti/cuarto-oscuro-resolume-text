@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <h1>Cuarto Oscuro – Resolume Text</h1>
+  <h1>Cuarto Oscuro – Resolume Text</h1>
 
   <form id="message-form">
     <details id="config" open>
@@ -25,15 +25,13 @@
         <input type="number" name="layer" id="layer-input" min="1" max="99" step="1" value="1" required>
         <label for="layer">Clip Index</label>
         <input type="number" name="clip" id="clip-input" min="1" max="99" step="1" value="1" required>
-      </div>
-
-      <div>
-        <label for="align_vertical">Align Vert.</label>
-        <select name="align_vertical">
-          <option value="top">Top</option>
-          <option value="center">Center</option>
-          <option value="bottom" selected>Bottom</option>
-        </select>
+        <label for="preset">Text Block Preset</label>
+        <div>
+          <select name="preset">
+            <option value="" selected>Default</option>
+          </select>
+          <button type="button" id="preset-refresh-button">Refresh</button>
+        </div>
       </div>
     </details>
 
