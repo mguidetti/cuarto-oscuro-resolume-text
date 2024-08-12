@@ -1,0 +1,53 @@
+html {
+  font-family: sans-serif;
+}
+
+body {
+  padding: 1rem;
+  font-size: 18px;
+  max-width: 80ch;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 1.25rem;
+}
+
+#config {
+  border: 1px solid black;
+  padding: 1rem;
+}
+
+#config > div {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  row-gap: 0.25rem;
+  column-gap: 1rem;
+  align-items: center;
+  font-size: 0.85rem;
+}
+
+#config > div > label {
+  white-space: nowrap;
+}
+
+#config > div > input[type="number"] {
+  max-width: 10ch;
+}
+
+#message-form { 
+  margin-top: 1rem;
+}
+
+#message-form textarea#message-input { 
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  border: 1px solid black;
+}
+
+#message-form button[type="submit"] {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+}
