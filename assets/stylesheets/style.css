@@ -36,14 +36,11 @@ h1 {
   max-width: 10ch;
 }
 
-#message-form { 
-  margin-top: 1rem;
-}
-
-#message-form textarea#message-input { 
+textarea#message-input { 
   width: 100%;
   padding: 0.5rem;
   font-size: 1.5rem;
+  margin-top: 1rem;
   border: 1px solid black;
 }
 

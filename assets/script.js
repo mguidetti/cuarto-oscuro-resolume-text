@@ -68,6 +68,8 @@ async function submitForm(event, resolume) {
   await resolume.updateTextBlock(layerInput.value, clipInput.value, message);
 
   clipInput.value++ 
+  messageInput.value = null
+  messageInput.focus()
 }
 
 function setup() {

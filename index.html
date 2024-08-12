@@ -13,22 +13,22 @@
 <body>
     <h1>Cuarto Oscuro – Resolume Text</h1>
 
+  <form id="message-form">
     <details id="config" open>
       <summary>Config</summary>
       <div>
         <label for="address">Resolume Address</label>
-        <input type="text" name="address" id="address-input" value="localhost">
+        <input type="text" name="address" id="address-input" value="localhost" required>
         <label for="port">Resolume Port</label>
-        <input type="number" name="port" id="port-input" value="8080">
+        <input type="number" name="port" id="port-input" value="8080" required>
         <label for="layer">Layer Index</label>
-        <input type="number" name="layer" id="layer-input" min="1" max="99" step="1" value="1">
+        <input type="number" name="layer" id="layer-input" min="1" max="99" step="1" value="1" required>
         <label for="layer">Clip Index</label>
-        <input type="number" name="clip" id="clip-input" min="1" max="99" step="1" value="1">
+        <input type="number" name="clip" id="clip-input" min="1" max="99" step="1" value="1" required>
       </div>
     </details>
 
-  <form id="message-form">
-    <textarea name="message" id="message-input" rows="8" placeholder="message"></textarea>
+    <textarea name="message" id="message-input" rows="8" placeholder="message" rqeuired></textarea>
     <button type="submit">Submit</button>
   </form>
 
