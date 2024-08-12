@@ -37,6 +37,7 @@ class Resolume {
           Text: {
             value: message,
           },
+          
         },
       },
     };
@@ -59,12 +60,14 @@ class Resolume {
 async function submitForm(event, resolume) {
   event.preventDefault();
 
-  const layerInput = document.getElementById("layer-input");
+  const formData = new FormData(event.target);
+  const data = Object.fromEntries(formData.entries());
+
+  await resolume.createTextBlock(data.layer, data.clip);
+  await resolume.updateTextBlock(data.layer, data.clip, data.message);
+
   const clipInput = document.getElementById("clip-input");
   const messageInput = document.getElementById("message-input");
-
-  await resolume.createTextBlock(layerInput.value, clipInput.value);
-  await resolume.updateTextBlock(layerInput.value, clipInput.value, message.value);
 
   clipInput.value++ 
   messageInput.value = null

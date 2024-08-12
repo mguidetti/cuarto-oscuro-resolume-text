@@ -26,6 +26,15 @@
         <label for="layer">Clip Index</label>
         <input type="number" name="clip" id="clip-input" min="1" max="99" step="1" value="1" required>
       </div>
+
+      <div>
+        <label for="align_vertical">Align Vert.</label>
+        <select name="align_vertical">
+          <option value="top">Top</option>
+          <option value="center">Center</option>
+          <option value="bottom" selected>Bottom</option>
+        </select>
+      </div>
     </details>
 
     <textarea name="message" id="message-input" rows="8" placeholder="message" required></textarea>
