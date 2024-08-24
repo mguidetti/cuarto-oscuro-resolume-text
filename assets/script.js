@@ -111,6 +111,8 @@ function initResolume() {
   const address = document.getElementById("address-input").value;
   const port = document.getElementById("port-input").value;
 
+  console.log(`Connecting to ${address}:${port}`);
+  
   resolume = new Resolume(address, port);
 }
 
@@ -126,10 +128,10 @@ function setup() {
   document
     .getElementById("preset-refresh-button")
     .addEventListener("click", () => populatePresets(resolume, presetSelectInput));
+  document
+    .getElementById("reconnect-button")
+    .addEventListener("click", () => initResolume())
 }
 
 setup();
 
-document
-  .getElementById("reconnect-button")
-  .addEventListener("click", () => initResolume)
