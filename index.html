@@ -21,6 +21,10 @@
         <input type="text" name="address" id="address-input" value="localhost" required>
         <label for="port">Resolume Port</label>
         <input type="number" name="port" id="port-input" value="8080" required>
+        <div></div>
+        <div>
+          <button type="button" id="reconnect-button">Reconnect</button>
+        </div>
         <label for="layer">Layer Index</label>
         <input type="number" name="layer" id="layer-input" min="1" max="99" step="1" value="1" required>
         <label for="layer">Clip Index</label>
@@ -30,7 +34,7 @@
           <select name="preset">
             <option value="" selected>Default</option>
           </select>
-          <button type="button" id="preset-refresh-button">Refresh</button>
+          <button type="button" id="preset-refresh-button">Refresh Presets</button>
         </div>
       </div>
     </details>

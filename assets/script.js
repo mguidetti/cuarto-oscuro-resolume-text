@@ -104,12 +104,20 @@ async function submitForm(event, resolume) {
   messageInput.focus();
 }
 
-function setup() {
+// Globl resolume scope
+var resolume
+
+function initResolume() {
   const address = document.getElementById("address-input").value;
   const port = document.getElementById("port-input").value;
-  const presetSelectInput = document.querySelector("select[name='preset']");
-  const resolume = new Resolume(address, port);
 
+  resolume = new Resolume(address, port);
+}
+
+function setup() {
+  const presetSelectInput = document.querySelector("select[name='preset']");
+
+  initResolume()
   populatePresets(resolume, presetSelectInput);
 
   document
@@ -117,9 +125,11 @@ function setup() {
     .addEventListener("submit", (event) => submitForm(event, resolume));
   document
     .getElementById("preset-refresh-button")
-    .addEventListener("click", () =>
-      populatePresets(resolume, presetSelectInput)
-    );
+    .addEventListener("click", () => populatePresets(resolume, presetSelectInput));
 }
 
 setup();
+
+document
+  .getElementById("reconnect-button")
+  .addEventListener("click", () => initResolume)
